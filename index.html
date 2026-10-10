@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জাগো নাটোর - ৩ লাখ ফলোয়ার পূর্তি উৎসব</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Hind Siliguri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .page-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            color: #dc2626;
+            font-weight: 700;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1.5px solid #cbd5e1;
+            transition: all 0.2s ease;
+        }
+
+        .glass-input:focus {
+            background: #ffffff;
+            border-color: #0284c7;
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.1);
+        }
+
+        .canvas-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+    <!-- 1. INTRO / SPLASH SCREEN -->
+    <div id="splash-screen" class="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center p-6 page-transition">
+        <div class="max-w-xl w-full text-center flex flex-col items-center">
+            
+            <div class="mb-8 transform transition duration-700 hover:scale-105">
+                <img src="https://i.ibb.co.com/C41GhZq/Pixellab-ST-20261010-212733.png" 
+                     onerror="this.src='https://placehold.co/180x180/0284c7/ffffff?text=Jago+Natore'"
+                     alt="জাগো নাটোর লোগো" 
+                     class="w-32 h-32 md:w-40 md:h-40 object-contain rounded-full shadow-md border border-slate-100 bg-white p-1">
+            </div>
+
+            <div class="w-full bg-slate-50 border border-slate-200/80 shadow-sm rounded-2xl p-6 md:p-8 mb-8 text-center relative">
+                <p id="typewriter-text" class="text-slate-800 text-lg md:text-xl font-medium leading-relaxed min-h-[80px] flex items-center justify-center typing-cursor">
+                </p>
+            </div>
+
+            <button id="enter-btn" onclick="enterMainApp()" class="opacity-0 transform translate-y-3 transition-all duration-500 bg-slate-900 hover:bg-blue-600 text-white font-semibold px-8 py-3 rounded-full shadow-sm hover:shadow-md transition active:scale-95 text-sm flex items-center gap-2">
+                <span>মূল পেইজে প্রবেশ করুন</span>
+                <i class="fas fa-arrow-right text-xs"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. MAIN APPLICATION LAYER -->
+    <div id="main-app" class="hidden opacity-0 page-transition min-h-screen flex flex-col justify-between bg-slate-50">
+        
+        <!-- Header Navigation -->
+        <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+            <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+                
+                <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="showSection('home-section')">
+                    <img src="https://i.ibb.co.com/C41GhZq/Pixellab-ST-20261010-212733.png" 
+                         onerror="this.src='https://placehold.co/40x40/0284c7/ffffff?text=JN'"
+                         alt="জাগো নাটোর" 
+                         class="w-10 h-10 object-contain rounded-full border border-slate-200">
+                    <div>
+                        <h1 class="font-bold text-base md:text-lg text-slate-900 leading-none">জাগো নাটোর</h1>
+                        <span class="text-[11px] text-blue-600 font-semibold tracking-wide">৩ লাখ অনুসারী উদযাপন</span>
+                    </div>
+                </div>
+
+                <!-- Facebook Page Link Only -->
+                <div>
+                    <a href="https://www.facebook.com/jagonatore" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl transition duration-200 shadow-sm">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                        <span>ফেসবুক পেইজ</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+            
+            <!-- SECTION 1: HOME LANDING -->
+            <div id="home-section" class="space-y-8">
+                <div class="glass-panel rounded-3xl p-8 md:p-12 text-center border border-slate-200/80 shadow-sm relative overflow-hidden">
+                    <span class="inline-block bg-blue-50 text-blue-600 border border-blue-200/60 font-semibold px-4 py-1 rounded-full text-xs sm:text-sm mb-4">
+                        🎉 ৩,০০,০০০+ ফেসবুক ফলোয়ার পুর্তি
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+                        আপনাদের আস্থাই আমাদের পথচলার মূল শক্তি
+                    </h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg mb-8 leading-relaxed">
+                        'জাগো নাটোর'-এর পরিবারের ৩লক্ষ অনুসারীকে জানাই অন্তরের অন্তস্থল থেকে ধন্যবাদ ও কৃতজ্ঞতা। নাটোরের এই আনন্দময় মুহূর্তে আপনার নাম ও ছবি দিয়ে এখনই নিজের এক্সক্লুসিভ শুভেচ্ছা ফটোকার্ড তৈরি করুন।
+                    </p>
+
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button onclick="showSection('generator-section')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3.5 rounded-2xl shadow-md hover:shadow-lg transition duration-200 hover:scale-[1.01] active:scale-95 flex items-center gap-2">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                            <span>শুভেচ্ছা ফটোকার্ড বানান</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: PHOTOCARD GENERATOR PAGE -->
+            <div id="generator-section" class="hidden space-y-8">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fas fa-portrait text-blue-600"></i> শুভেচ্ছা ফটোকার্ড জেনারেটর
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-1">আপনার ছবি ও নাম দিয়ে মুহূর্তেই বানিয়ে নিন আকর্ষণীয় ফটোকার্ড</p>
+                    </div>
+
+                    <a href="https://www.facebook.com/jagonatore" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-blue-600 hover:underline">
+                        <i class="fab fa-facebook-square text-base"></i>
+                        <span>জাগো নাটোর ফেসবুক পেইজ</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Controls Sidebar -->
+                    <div class="lg:col-span-5 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-5">
+                        <h4 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+                            <i class="fas fa-sliders-h text-blue-600"></i> আপনার তথ্য দিন
+                        </h4>
+
+                        <!-- Photo Upload Dropzone -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">১. আপনার ছবি দিন *</label>
+                            <div id="drop-zone" onclick="document.getElementById('image-input').click()" 
+                                 class="border-2 border-dashed border-slate-300 hover:border-blue-500 rounded-xl p-5 text-center cursor-pointer transition bg-slate-50/60 hover:bg-blue-50/20 flex flex-col items-center justify-center min-h-[130px]">
+                                <i class="fas fa-cloud-arrow-up text-2xl text-blue-500 mb-2"></i>
+                                <p class="text-sm font-semibold text-slate-700">ছবি আপলোড করতে ক্লিক করুন</p>
+                                <p class="text-xs text-slate-400 mt-1">PNG, JPG বা WEBP ফাইল</p>
+                                <input type="file" id="image-input" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
+                            </div>
+                        </div>
+
+                        <!-- Advanced Photo Controls (Zoom & Pan) -->
+                        <div id="photo-controls" class="p-4 bg-slate-50 rounded-xl border border-slate-200 hidden space-y-4">
+                            <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">ছবির পজিশন ও জুম</label>
+                                <button type="button" onclick="resetPhotoTransform()" class="text-xs text-blue-600 hover:underline font-semibold">
+                                    <i class="fas fa-rotate-left"></i> রিসেট
+                                </button>
+                            </div>
+
+                            <!-- Zoom Slider -->
+                            <div>
+                                <div class="flex justify-between text-xs text-slate-600 mb-1">
+                                    <span>জুম লেভেল (Zoom)</span>
+                                    <span id="zoom-val" class="font-bold">100%</span>
+                                </div>
+                                <input type="range" id="zoom-slider" min="50" max="250" value="100" class="w-full accent-blue-600 cursor-pointer" oninput="updatePhotoTransform()">
+                            </div>
+
+                            <!-- Horizontal Pan (Left/Right) -->
+                            <div>
+                                <div class="flex justify-between text-xs text-slate-600 mb-1">
+                                    <span>ডানে / বামে (Left / Right)</span>
+                                    <span id="pan-x-val" class="font-bold">0</span>
+                                </div>
+                                <input type="range" id="pan-x-slider" min="-150" max="150" value="0" class="w-full accent-blue-600 cursor-pointer" oninput="updatePhotoTransform()">
+                            </div>
+
+                            <!-- Vertical Pan (Up/Down) -->
+                            <div>
+                                <div class="flex justify-between text-xs text-slate-600 mb-1">
+                                    <span>উপরে / নিচে (Up / Down)</span>
+                                    <span id="pan-y-val" class="font-bold">0</span>
+                                </div>
+                                <input type="range" id="pan-y-slider" min="-150" max="150" value="0" class="w-full accent-blue-600 cursor-pointer" oninput="updatePhotoTransform()">
+                            </div>
+                        </div>
+
+                        <!-- Name & Title Inputs -->
+                        <div class="space-y-4">
+                            <div>
+                                <label for="user-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">২. আপনার নাম (নীল রঙে আসবে) *</label>
+                                <input type="text" id="user-name" placeholder="যেমন: আব্দুর রহমান" 
+                                       class="w-full px-4 py-2.5 rounded-xl glass-input text-slate-800 text-sm focus:outline-none"
+                                       oninput="renderCanvas()">
+                            </div>
+
+                            <div>
+                                <label for="user-title" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">৩. পদবী / পরিচয় (কালো রঙে আসবে)</label>
+                                <input type="text" id="user-title" placeholder="যেমন: নাটোর সদর" 
+                                       class="w-full px-4 py-2.5 rounded-xl glass-input text-slate-800 text-sm focus:outline-none"
+                                       oninput="renderCanvas()">
+                            </div>
+                        </div>
+
+                        <button onclick="downloadPhotocard()" class="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-md hover:shadow-lg transition duration-200 flex items-center justify-center gap-2 text-base">
+                            <i class="fas fa-download"></i>
+                            <span>ফটোকার্ড ডাউনলোড করুন</span>
+                        </button>
+                    </div>
+
+                    <!-- Canvas Live Preview -->
+                    <div class="lg:col-span-7 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 flex flex-col items-center">
+                        <div class="w-full flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                            <span class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                                <i class="fas fa-eye text-blue-600"></i> লাইভ প্রিভিউ
+                            </span>
+                            <span class="text-[11px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">HD Quality</span>
+                        </div>
+
+                        <div class="relative w-full max-w-[480px] bg-slate-100 rounded-xl overflow-hidden canvas-shadow aspect-square flex items-center justify-center border border-slate-200" id="canvas-wrapper">
+                            <canvas id="photocard-canvas" class="w-full h-full object-contain"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Caption Box -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                        <div>
+                            <h4 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                                <i class="fas fa-quote-left text-blue-600"></i> পোস্টের ক্যাপশন
+                            </h4>
+                            <p class="text-xs text-slate-500">ফেসবুকে ছবি পোস্ট করার সময়ে এই লেখাটি কপি করে দিতে পারেন</p>
+                        </div>
+                        <button onclick="copyCaption()" class="self-start sm:self-auto bg-slate-900 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-xl shadow-sm transition duration-200 flex items-center gap-2 text-xs shrink-0">
+                            <i class="fas fa-copy"></i>
+                            <span id="copy-btn-text">কপি করুন</span>
+                        </button>
+                    </div>
+
+                    <textarea id="caption-text" readonly rows="2" 
+                              class="w-full p-3.5 rounded-xl glass-input text-slate-800 font-medium text-sm sm:text-base resize-none focus:outline-none">নাটোরের জনপ্রিয় অনলাইন নিউজ 'জাগো নাটোর'-এর ৩ লাখ ফলোয়ার পুর্তিতে আন্তরিক শুভেচ্ছা ও অভিনন্দন🎉❤️</textarea>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- 3. FOOTER SECTION -->
+        <footer class="bg-white border-t border-slate-200/80 py-6 text-center text-slate-600 text-xs sm:text-sm mt-12">
+            <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p>© 2026 <strong class="text-slate-800">জাগো নাটোর</strong>. সর্বস্বত্ব সংরক্ষিত।</p>
+
+                <a href="tel:+8801763752653" 
+                   class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white transition-all duration-200 font-medium text-xs group border border-slate-200">
+                    <span>Developed By <strong class="text-blue-600 group-hover:text-blue-400">Rafi Digital Solution</strong></span>
+                    <i class="fas fa-phone text-[10px]"></i>
+                </a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <i class="fas fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toast-message" class="text-xs sm:text-sm font-medium">কপি হয়েছে!</span>
+    </div>
+
+    <script>
+        const TYPEWRITER_TEXT = "'জাগো নাটোর'-এর পরিবারের ৩লক্ষ অনুসারীকে জানাই অন্তরের অন্তস্থল থেকে ধন্যবাদ ও কৃতজ্ঞতা। আপনাদের আস্থাই আমাদের পথচলার মূল শক্তি।";
+        const TEMPLATE_IMG_URL = "https://i.ibb.co.com/9kvwVBL9/Pixellab-ST-20261010-233348.png";
+
+        let templateImg = new Image();
+        templateImg.crossOrigin = "anonymous";
+        templateImg.src = TEMPLATE_IMG_URL;
+
+        let userImg = null;
+        let zoomLevel = 100;
+        let panX = 0;
+        let panY = 0;
+
+        // EXACT CANVAS COORDINATES FOR THE NEW FRAME
+        const CIRCLE_REL_X = 0.742;
+        const CIRCLE_REL_Y = 0.598; 
+        const CIRCLE_REL_R = 0.195;
+
+        const NAME_REL_X = 0.728;
+        const NAME_REL_Y = 0.873;   
+        const TITLE_REL_Y = 0.916;  
+
+        const canvas = document.getElementById('photocard-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Typewriter Logic
+        let charIndex = 0;
+        const typewriterEl = document.getElementById('typewriter-text');
+        const enterBtn = document.getElementById('enter-btn');
+
+        function startTypewriter() {
+            if (charIndex < TYPEWRITER_TEXT.length) {
+                typewriterEl.textContent += TYPEWRITER_TEXT.charAt(charIndex);
+                charIndex++;
+                setTimeout(startTypewriter, 40);
+            } else {
+                typewriterEl.classList.remove('typing-cursor');
+                enterBtn.classList.remove('opacity-0', 'translate-y-3');
+
+                setTimeout(() => {
+                    const splash = document.getElementById('splash-screen');
+                    if (splash && !splash.classList.contains('pointer-events-none')) {
+                        enterMainApp();
+                    }
+                }, 2000);
+            }
+        }
+
+        function enterMainApp() {
+            const splash = document.getElementById('splash-screen');
+            const mainApp = document.getElementById('main-app');
+
+            splash.classList.add('opacity-0', 'pointer-events-none');
+            mainApp.classList.remove('hidden');
+
+            setTimeout(() => {
+                splash.style.display = 'none';
+                mainApp.classList.remove('opacity-0');
+                renderCanvas();
+            }, 500);
+        }
+
+        function showSection(sectionId) {
+            document.getElementById('home-section').classList.add('hidden');
+            document.getElementById('generator-section').classList.add('hidden');
+
+            const activeSection = document.getElementById(sectionId);
+            activeSection.classList.remove('hidden');
+
+            if (sectionId === 'generator-section') {
+                renderCanvas();
+                window.scrollTo({ top: activeSection.offsetTop - 80, behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) loadImageFromFile(file);
+        }
+
+        function loadImageFromFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showToast('অনুগ্ৰহ করে একটি ইমেজ ফাইল সিলেক্ট করুন');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                userImg = new Image();
+                userImg.onload = function () {
+                    document.getElementById('photo-controls').classList.remove('hidden');
+                    resetPhotoTransform();
+                    renderCanvas();
+                    showToast('ছবি সফলভাবে যুক্ত হয়েছে!');
+                };
+                userImg.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetPhotoTransform() {
+            zoomLevel = 100;
+            panX = 0;
+            panY = 0;
+            document.getElementById('zoom-slider').value = 100;
+            document.getElementById('zoom-val').textContent = '100%';
+            document.getElementById('pan-x-slider').value = 0;
+            document.getElementById('pan-x-val').textContent = '0';
+            document.getElementById('pan-y-slider').value = 0;
+            document.getElementById('pan-y-val').textContent = '0';
+            renderCanvas();
+        }
+
+        function updatePhotoTransform() {
+            zoomLevel = parseInt(document.getElementById('zoom-slider').value, 10);
+            document.getElementById('zoom-val').textContent = zoomLevel + '%';
+
+            panX = parseInt(document.getElementById('pan-x-slider').value, 10);
+            document.getElementById('pan-x-val').textContent = panX;
+
+            panY = parseInt(document.getElementById('pan-y-slider').value, 10);
+            document.getElementById('pan-y-val').textContent = panY;
+
+            renderCanvas();
+        }
+
+        // --- ACCURATE CANVAS RENDERING ENGINE ---
+        function renderCanvas() {
+            if (!templateImg.complete || templateImg.naturalWidth === 0) return;
+
+            canvas.width = templateImg.naturalWidth || 1080;
+            canvas.height = templateImg.naturalHeight || 1080;
+
+            const width = canvas.width;
+            const height = canvas.height;
+
+            ctx.clearRect(0, 0, width, height);
+
+            const circleX = width * CIRCLE_REL_X;
+            const circleY = height * CIRCLE_REL_Y;
+            const radius = width * CIRCLE_REL_R;
+
+            // 1. Draw White Background
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, width, height);
+
+            // 2. Draw User Photo INSIDE circular clip slot with Zoom & Pan offsets
+            if (userImg) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(circleX, circleY, radius, 0, Math.PI * 2, true);
+                ctx.closePath();
+                ctx.clip();
+
+                const scaleFactor = (zoomLevel / 100);
+                const baseScale = Math.max((radius * 2) / userImg.width, (radius * 2) / userImg.height);
+                const finalWidth = userImg.width * baseScale * scaleFactor;
+                const finalHeight = userImg.height * baseScale * scaleFactor;
+
+                const drawX = circleX - (finalWidth / 2) + panX;
+                const drawY = circleY - (finalHeight / 2) + panY;
+
+                ctx.drawImage(userImg, drawX, drawY, finalWidth, finalHeight);
+                ctx.restore();
+            }
+
+            // 3. Draw Template Background OVERLAY on top
+            ctx.drawImage(templateImg, 0, 0, width, height);
+
+            // 4. Render Name and Designation Text
+            const nameInput = document.getElementById('user-name').value.trim();
+            const titleInput = document.getElementById('user-title').value.trim();
+
+            const textX = width * NAME_REL_X;
+
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            // Name Text (Deep Blue Color)
+            if (nameInput) {
+                ctx.font = `bold ${width * 0.029}px 'Hind Siliguri', sans-serif`;
+                ctx.fillStyle = "#0c4a6e"; 
+                ctx.fillText(nameInput, textX, height * NAME_REL_Y);
+            }
+
+            // Designation Text (Black Color)
+            if (titleInput) {
+                ctx.font = `600 ${width * 0.022}px 'Hind Siliguri', sans-serif`;
+                ctx.fillStyle = "#1e293b"; 
+                ctx.fillText(titleInput, textX, height * TITLE_REL_Y);
+            }
+        }
+
+        templateImg.onload = renderCanvas;
+
+        function downloadPhotocard() {
+            if (!userImg) {
+                showToast('দয়া করে প্রথমে আপনার একটি ছবি আপলোড করুন!');
+                document.getElementById('drop-zone').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            const nameVal = document.getElementById('user-name').value.trim() || 'jago-natore-3lakhs';
+            const fileName = `JagoNatore_${nameVal.replace(/\s+/g, '_')}.png`;
+
+            const link = document.createElement('a');
+            link.download = fileName;
+            link.href = canvas.toDataURL('image/png', 1.0);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast('ফটোকার্ড ডাউনলোড সম্পন্ন হয়েছে!');
+        }
+
+        function copyCaption() {
+            const textarea = document.getElementById('caption-text');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+
+            try {
+                document.execCommand('copy');
+                const btnText = document.getElementById('copy-btn-text');
+                btnText.textContent = 'কপি হয়েছে!';
+                showToast('ক্যাপশন কপি হয়েছে!');
+                setTimeout(() => {
+                    btnText.textContent = 'কপি করুন';
+                }, 2500);
+            } catch (err) {
+                showToast('কপি করা সম্ভব হয়নি');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        window.onload = function () {
+            startTypewriter();
+        };
+    </script>
+</body>
+</html>
