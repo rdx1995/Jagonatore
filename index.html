@@ -39,10 +39,10 @@
         }
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
         .glass-input {
@@ -59,6 +59,48 @@
 
         .canvas-shadow {
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Floating Balloon & Celebration Animation --- */
+        .balloon-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            opacity: 0.85;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: floatUp 8s infinite linear;
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 14px;
+            background: rgba(100, 116, 139, 0.5);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(20deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -105,7 +147,6 @@
                     </div>
                 </div>
 
-                <!-- Facebook Page Link Only -->
                 <div>
                     <a href="https://www.facebook.com/jagonatore" target="_blank" rel="noopener noreferrer" 
                        class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl transition duration-200 shadow-sm">
@@ -119,22 +160,30 @@
         <!-- Main Content Area -->
         <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
             
-            <!-- SECTION 1: HOME LANDING -->
-            <div id="home-section" class="space-y-8">
-                <div class="glass-panel rounded-3xl p-8 md:p-12 text-center border border-slate-200/80 shadow-sm relative overflow-hidden">
-                    <span class="inline-block bg-blue-50 text-blue-600 border border-blue-200/60 font-semibold px-4 py-1 rounded-full text-xs sm:text-sm mb-4">
-                        🎉 ৩,০০,০০০+ ফেসবুক ফলোয়ার পুর্তি
-                    </span>
-                    <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
-                        আপনাদের আস্থাই আমাদের পথচলার মূল শক্তি
+            <!-- SECTION 1: HOME LANDING (WITH BALLOONS) -->
+            <div id="home-section" class="space-y-8 relative">
+                
+                <!-- Floating Balloon Animation Container -->
+                <div class="balloon-container" id="balloon-box"></div>
+
+                <div class="glass-panel rounded-3xl p-8 md:p-14 text-center border border-slate-200/80 shadow-xl relative overflow-hidden z-10 bg-gradient-to-b from-white/90 via-blue-50/30 to-white/90">
+                    
+                    <div class="inline-flex items-center gap-2 bg-blue-100/80 text-blue-700 border border-blue-200/80 font-bold px-5 py-1.5 rounded-full text-xs sm:text-sm mb-6 shadow-sm">
+                        <span class="animate-bounce">🎉</span>
+                        <span>৩,০০,০০০+ ফেসবুক ফলোয়ার পুর্তি উৎসব</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
+                        আপনাদের আস্থাই আমাদের <br class="hidden sm:inline"/><span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">পথচলার মূল শক্তি</span>
                     </h2>
-                    <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg mb-8 leading-relaxed">
-                        'জাগো নাটোর'-এর পরিবারের ৩লক্ষ অনুসারীকে জানাই অন্তরের অন্তস্থল থেকে ধন্যবাদ ও কৃতজ্ঞতা। নাটোরের এই আনন্দময় মুহূর্তে আপনার নাম ও ছবি দিয়ে এখনই নিজের এক্সক্লুসিভ শুভেচ্ছা ফটোকার্ড তৈরি করুন।
+
+                    <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg mb-10 leading-relaxed font-normal">
+                        'জাগো নাটোর'-এর পরিবারের ৩লক্ষ অনুসারীকে জানাই অন্তরের অন্তস্থল থেকে ধন্যবাদ ও কৃতজ্ঞতা। নাটোরের এই ঐতিহাসিক আনন্দময় মুহূর্তে আপনার নাম ও ছবি দিয়ে মুহূর্তেই এক্সক্লুসিভ শুভেচ্ছা ফটোকার্ড বানিয়ে নিন!
                     </p>
 
                     <div class="flex flex-wrap justify-center gap-4">
-                        <button onclick="showSection('generator-section')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3.5 rounded-2xl shadow-md hover:shadow-lg transition duration-200 hover:scale-[1.01] active:scale-95 flex items-center gap-2">
-                            <i class="fas fa-wand-magic-sparkles"></i>
+                        <button onclick="showSection('generator-section')" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-9 py-4 rounded-2xl shadow-lg hover:shadow-blue-500/25 transition duration-300 hover:scale-[1.02] active:scale-95 flex items-center gap-3 text-base sm:text-lg">
+                            <i class="fas fa-wand-magic-sparkles text-amber-300"></i>
                             <span>শুভেচ্ছা ফটোকার্ড বানান</span>
                         </button>
                     </div>
@@ -311,13 +360,15 @@
         let panX = 0;
         let panY = 0;
 
-        // EXACT CANVAS COORDINATES FOR THE NEW FRAME
-        const CIRCLE_REL_X = 0.742;
+        // EXACT CANVAS COORDINATES FOR FRAME
+        const CIRCLE_REL_X = 0.745;
         const CIRCLE_REL_Y = 0.598; 
         const CIRCLE_REL_R = 0.195;
 
-        const NAME_REL_X = 0.728;
-        const NAME_REL_Y = 0.873;   
+        // TEXT POSITIONING & BOUNDARIES
+        const NAME_START_X = 0.615; // Start right after profile icon
+        const MAX_TEXT_WIDTH_REL = 0.300; // Max allowed width inside badge
+        const NAME_REL_Y = 0.872;   
         const TITLE_REL_Y = 0.916;  
 
         const canvas = document.getElementById('photocard-canvas');
@@ -357,6 +408,7 @@
                 splash.style.display = 'none';
                 mainApp.classList.remove('opacity-0');
                 renderCanvas();
+                createBalloons(); // Generate Home Floating Balloons
             }, 500);
         }
 
@@ -426,6 +478,23 @@
             renderCanvas();
         }
 
+        // --- DYNAMIC FONT RESIZING FUNCTION ---
+        function drawAutoFitText(text, x, y, maxW, baseFontSize, fontWeight, color) {
+            let currentFontSize = baseFontSize;
+            ctx.font = `${fontWeight} ${currentFontSize}px 'Hind Siliguri', sans-serif`;
+
+            // Scale down font size until text fits into maximum allowed width
+            while (ctx.measureText(text).width > maxW && currentFontSize > 10) {
+                currentFontSize -= 0.5;
+                ctx.font = `${fontWeight} ${currentFontSize}px 'Hind Siliguri', sans-serif`;
+            }
+
+            ctx.fillStyle = color;
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+            ctx.fillText(text, x, y);
+        }
+
         // --- ACCURATE CANVAS RENDERING ENGINE ---
         function renderCanvas() {
             if (!templateImg.complete || templateImg.naturalWidth === 0) return;
@@ -469,27 +538,23 @@
             // 3. Draw Template Background OVERLAY on top
             ctx.drawImage(templateImg, 0, 0, width, height);
 
-            // 4. Render Name and Designation Text
+            // 4. Render Name and Designation Text (Auto-Resized)
             const nameInput = document.getElementById('user-name').value.trim();
             const titleInput = document.getElementById('user-title').value.trim();
 
-            const textX = width * NAME_REL_X;
+            const textX = width * NAME_START_X;
+            const maxTextWidth = width * MAX_TEXT_WIDTH_REL;
 
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-
-            // Name Text (Deep Blue Color)
+            // Name Text (Deep Blue Color) - Line 1 inside badge
             if (nameInput) {
-                ctx.font = `bold ${width * 0.029}px 'Hind Siliguri', sans-serif`;
-                ctx.fillStyle = "#0c4a6e"; 
-                ctx.fillText(nameInput, textX, height * NAME_REL_Y);
+                const baseNameSize = width * 0.029;
+                drawAutoFitText(nameInput, textX, height * NAME_REL_Y, maxTextWidth, baseNameSize, 'bold', '#0c4a6e');
             }
 
-            // Designation Text (Black Color)
+            // Designation Text (Black Color) - Line 2 inside badge
             if (titleInput) {
-                ctx.font = `600 ${width * 0.022}px 'Hind Siliguri', sans-serif`;
-                ctx.fillStyle = "#1e293b"; 
-                ctx.fillText(titleInput, textX, height * TITLE_REL_Y);
+                const baseTitleSize = width * 0.022;
+                drawAutoFitText(titleInput, textX, height * TITLE_REL_Y, maxTextWidth, baseTitleSize, '600', '#1e293b');
             }
         }
 
@@ -543,6 +608,35 @@
             setTimeout(() => {
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
+        }
+
+        // --- CREATE FLOATING BALLOONS FOR HERO SECTION ---
+        function createBalloons() {
+            const container = document.getElementById('balloon-box');
+            if (!container) return;
+
+            const colors = ['#0284c7', '#2563eb', '#dc2626', '#059669', '#d97706', '#9333ea'];
+            container.innerHTML = '';
+
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+
+                const size = Math.floor(Math.random() * 25) + 35; // 35px to 60px
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.floor(Math.random() * 90) + 5; // 5% to 95%
+                const duration = Math.floor(Math.random() * 6) + 7; // 7s to 13s
+                const delay = Math.random() * 5;
+
+                balloon.style.width = `${size}px`;
+                balloon.style.height = `${size * 1.25}px`;
+                balloon.style.background = color;
+                balloon.style.left = `${left}%`;
+                balloon.style.animationDuration = `${duration}s`;
+                balloon.style.animationDelay = `${delay}s`;
+
+                container.appendChild(balloon);
+            }
         }
 
         window.onload = function () {
