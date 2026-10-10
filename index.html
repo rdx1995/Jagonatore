@@ -267,15 +267,15 @@
                         <!-- Name & Title Inputs -->
                         <div class="space-y-4">
                             <div>
-                                <label for="user-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">২. আপনার নাম (নীল রঙে আসবে) *</label>
-                                <input type="text" id="user-name" placeholder="যেমন: আব্দুর রহমান" 
+                                <label for="user-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">২. আপনার নাম*</label>
+                                <input type="text" id="user-name" placeholder="যেমন: রাকিবুল হাসান রাফি" 
                                        class="w-full px-4 py-2.5 rounded-xl glass-input text-slate-800 text-sm focus:outline-none"
                                        oninput="renderCanvas()">
                             </div>
 
                             <div>
-                                <label for="user-title" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">৩. পদবী / পরিচয় (কালো রঙে আসবে)</label>
-                                <input type="text" id="user-title" placeholder="যেমন: নাটোর সদর" 
+                                <label for="user-title" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">৩. পদবী</label>
+                                <input type="text" id="user-title" placeholder="যেমন: সাংবাদিক" 
                                        class="w-full px-4 py-2.5 rounded-xl glass-input text-slate-800 text-sm focus:outline-none"
                                        oninput="renderCanvas()">
                             </div>
@@ -362,11 +362,11 @@
 
         // EXACT CANVAS COORDINATES FOR FRAME
         const CIRCLE_REL_X = 0.745;
-        const CIRCLE_REL_Y = 0.598; 
+        const CIRCLE_REL_Y = 0.597; 
         const CIRCLE_REL_R = 0.195;
 
         // TEXT POSITIONING & BOUNDARIES
-        const NAME_START_X = 0.615; // Start right after profile icon
+        const NAME_START_X = 0.620; // Start right after profile icon
         const MAX_TEXT_WIDTH_REL = 0.300; // Max allowed width inside badge
         const NAME_REL_Y = 0.872;   
         const TITLE_REL_Y = 0.916;  
